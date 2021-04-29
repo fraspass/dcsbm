@@ -10,7 +10,7 @@ from sklearn.preprocessing import scale
 from scipy.stats import chi2, norm
 
 ###########################################################
-## Reproduces results in Section 4.2 - Undirected graphs ##
+## Reproduces results in Section 5.5 - Undirected graphs ##
 ###########################################################
 
 ## Takes a vector and returns its spherical coordinates

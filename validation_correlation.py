@@ -8,7 +8,7 @@ from scipy.linalg import svd
 from scipy.linalg import orthogonal_procrustes as proc
 
 ###########################################################
-## Reproduces results in Section 4.2 - Undirected graphs ##
+## Reproduces results in Section 5.4 - Undirected graphs ##
 ###########################################################
 
 ## Takes a vector and returns its spherical coordinates

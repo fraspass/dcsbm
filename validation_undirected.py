@@ -11,9 +11,9 @@ from sklearn.preprocessing import scale
 from scipy.stats import chi2, norm
 from scipy.linalg import orthogonal_procrustes as proc
 
-###########################################################
-## Reproduces results in Section 4.2 - Undirected graphs ##
-###########################################################
+#################################################################
+## Reproduces results in Section 5.2 & 5.3 - Undirected graphs ##
+#################################################################
 
 ## Takes a vector and returns its spherical coordinates
 def cart_to_sphere(x):
