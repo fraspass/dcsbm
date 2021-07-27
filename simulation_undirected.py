@@ -2,8 +2,6 @@
 import numpy as np
 import argparse
 from collections import Counter
-from scipy.sparse import coo_matrix
-from scipy.sparse.linalg import eigsh
 from sklearn.metrics import adjusted_rand_score as ari
 import dcsbm
 
