@@ -26,6 +26,8 @@ n = args.n
 K = args.K
 M_sim = 250
 m = 10
+print('Number of nodes:', str(n))
+print('Number of communities:', str(K))
 
 ## Set seed to repeat the simulation
 np.random.seed(171171)
