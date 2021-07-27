@@ -11,10 +11,20 @@ import dcsbm
 ## Reproduces the results for Table 1 (undirected DCSBMs) ##
 ############################################################
 
+## Parser to give parameter values 
+parser = argparse.ArgumentParser()
+parser.add_argument("-n", type=int, dest="n", default=1000, const=True, nargs="?",\
+	help="Integer: number of nodes, default 1000")
+parser.add_argument("-K", type=int, dest="K", default=2, const=True, nargs="?",\
+	help="Integer: number of communities, default 2")
+
+## Parse arguments
+args = parser.parse_args()
+
 ## Arguments
-n = 1000
+n = args.n
+K = args.K
 M_sim = 250
-K = 3
 m = 10
 
 ## Set seed to repeat the simulation
@@ -92,6 +102,6 @@ for s in range(M_sim):
 
 for t in [None, 'normalised', 'theta']:
     label = t if t != None else 'none'
-    np.savetxt('Results/out_d_' + label + '.csv', true_d[t], fmt='%i', delimiter=',')
-    np.savetxt('Results/out_K_' + label + '.csv', true_K[t], fmt='%i', delimiter=',')
-    np.savetxt('Results/avg_ari_' + label + '.csv', avg_ari[t], fmt='%.6f', delimiter=',')
+    np.savetxt('Results/out_d_' + label + '_' + str(K) + '_' + str(n) + '.csv', true_d[t], fmt='%i', delimiter=',')
+    np.savetxt('Results/out_K_' + label + '_' + str(K) + '_' + str(n) + '.csv', true_K[t], fmt='%i', delimiter=',')
+    np.savetxt('Results/avg_ari_' + label + '_' + str(K) + '_' + str(n) + '.csv', avg_ari[t], fmt='%.6f', delimiter=',')
