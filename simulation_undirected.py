@@ -15,6 +15,8 @@ parser.add_argument("-n", type=int, dest="n", default=1000, const=True, nargs="?
 	help="Integer: number of nodes, default 1000")
 parser.add_argument("-K", type=int, dest="K", default=2, const=True, nargs="?",\
 	help="Integer: number of communities, default 2")
+parser.add_argument("-s", type=int, dest="s", default=171171, const=True, nargs="?",\
+	help="Integer: seed, default 171171")
 
 ## Parse arguments
 args = parser.parse_args()
@@ -28,7 +30,7 @@ print('Number of nodes:', str(n))
 print('Number of communities:', str(K))
 
 ## Set seed to repeat the simulation
-np.random.seed(171171)
+np.random.seed(args.s)
 q = np.array([int(x) for x in np.linspace(0,n,num=K,endpoint=False)])
 z = np.zeros(n,dtype=int)
 for k in range(K):
