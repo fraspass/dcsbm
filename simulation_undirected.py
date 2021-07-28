@@ -89,21 +89,24 @@ for t in [None, 'normalised', 'theta']:
     avg_ari[t] = []
 
 for s in range(M_sim):
-    ## No transformation
-    dK_none = find_max(bics[None][s])
-    true_d[None] += [dK_none[0]]
-    true_K[None] += [dK_none[1]]
-    avg_ari[None] += [aris[None][s][dK_none[0],dK_none[1]]]
-    ## Normalised
-    dK_norm = find_max(bics['normalised'][s]) 
-    true_d['normalised'] += [dK_norm[0]]
-    true_K['normalised'] += [dK_norm[1]]
-    avg_ari['normalised'] += [aris['normalised'][s][dK_norm[0],dK_norm[1]]]
-    ## Theta
-    dK_theta = find_max(bics['theta'][s]) 
-    true_d['theta'] += [dK_theta[0]]
-    true_K['theta'] += [dK_theta[1]]
-    avg_ari['theta'] += [aris['theta'][s][dK_theta[0],dK_theta[1]]]
+    try:
+        ## No transformation
+        dK_none = find_max(bics[None][s])
+        true_d[None] += [dK_none[0]]
+        true_K[None] += [dK_none[1]]
+        avg_ari[None] += [aris[None][s][dK_none[0],dK_none[1]]]
+        ## Normalised
+        dK_norm = find_max(bics['normalised'][s]) 
+        true_d['normalised'] += [dK_norm[0]]
+        true_K['normalised'] += [dK_norm[1]]
+        avg_ari['normalised'] += [aris['normalised'][s][dK_norm[0],dK_norm[1]]]
+        ## Theta
+        dK_theta = find_max(bics['theta'][s]) 
+        true_d['theta'] += [dK_theta[0]]
+        true_K['theta'] += [dK_theta[1]]
+        avg_ari['theta'] += [aris['theta'][s][dK_theta[0],dK_theta[1]]]
+    except:
+        continue
 
 for t in [None, 'normalised', 'theta']:
     label = t if t != None else 'none'
