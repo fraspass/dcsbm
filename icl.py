@@ -21,7 +21,7 @@ parser.add_argument("-i","--maxiter", type=int, dest="max_iter", default=150, co
 parser.add_argument("-m", "--model", dest="model", default = 2, type=int,
 	help="Model: 0 for standard, 1 for normalised, 2 for spherical.")
 ## Initial dimension of the embedding
-parser.add_argument("-d", "--dimension", dest="dimension", default = 50, type=int,
+parser.add_argument("-d", "--dimension", dest="dimension", default=50, type=int,
 	help="Initial dimension of the embedding.")
 ## Graph type
 parser.add_argument("-g", "--graph", dest="graph", default = 'icl2', type=str,
@@ -37,15 +37,17 @@ max_iter = args.max_iter
 model = args.model
 graph = args.graph
 m = args.dimension
+
+## Import data
 if graph == 'icl1':
-    true_labs = np.loadtxt(labs1, delimiter=',')
-    X = np.load('X_ICL1.npy')
+    true_labs = np.loadtxt('Data/labs1.csv', delimiter=',')
+    X = np.load('Data/X_ICL1.npy')
 elif graph == 'icl2':
-    true_labs = np.loadtxt(labs2, delimiter=',')
-    X = np.load('X_ICL2.npy')
+    true_labs = np.loadtxt('Data/labs2.csv', delimiter=',')
+    X = np.load('Data/X_ICL2.npy')
 elif graph == 'icl3':
-    true_labs = np.loadtxt(labs3, delimiter=',')
-    X = np.load('X_ICL3.npy')
+    true_labs = np.loadtxt('Data/labs3.csv', delimiter=',')
+    X = np.load('Data/X_ICL3.npy')
 else:
     raise ValueError('Invalid graph.')
 
@@ -75,14 +77,14 @@ for d in range(1,31):
         M = dcsbm.EGMM(K=K)
         if args.approx:
             try:
-                print('d: '+str(d)+'\tK: '+str(K))
+                print('\rd: '+str(d)+'\tK: '+str(K), end='')
                 z = M.fit_predict_approximate(X,d=d,transformation=mod_type)
             except:
                 print(str(d), str(K))
                 raise ValueError('Error')
         else:
-            print('d: '+str(d)+'\tK: '+str(K))
-            z = M.fit_predict(X,d=d,transformation=mod_type,verbose=False,random_init=False,max_iter=max_iter,tolerance=tolerance)
+            print('\rd: '+str(d)+'\tK: '+str(K), end='')
+            z = M.fit_predict(X,d=d,transformation=mod_type,verbose=True,random_init=False,max_iter=max_iter,tolerance=tolerance)
         ## Update the value of the BIC
         bic[d-1,K-2] = M.BIC()
         ari[d-1,K-2] = ARI(true_labs,z)
