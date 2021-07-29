@@ -67,7 +67,7 @@ class EGMM:
             respo_sum = respo.sum()
             self.vartheta[k] = np.divide(np.multiply(X, respo[:, np.newaxis]).sum(axis=0), respo_sum)
             self.Sigma[k] = np.cov(X.T, aweights=(respo/respo_sum).flatten(), bias=True)
-            if X_red is not None :
+            if X_red is not None:
                 self.sigma[k] = np.divide(np.multiply((X_red - mean_red) ** 2, respo[:, np.newaxis]).sum(axis=0), respo_sum)
         self.psi = self.responsibilities.mean(axis=0)
     
@@ -199,11 +199,11 @@ class EGMM:
         return (2 * loglik - n_parameters * np.log(n))
 
     ## Approximate maximum likelihood procedure using sklearn (much faster)
-    def fit_approximate(self, X, d, transformation):
+    def fit_approximate(self, X, d, transformation, n_init=1):
         ## Setup for the model
         self.model_setup(X=X, d=d, transformation=transformation)
         ## Calculate the GMM only on the initial embeddings
-        M = GaussianMixture(n_components=self.K,n_init=10).fit(self.X)
+        M = GaussianMixture(n_components=self.K,n_init=n_init).fit(self.X)
         ## Set the parameter values
         self.vartheta = M.means_
         self.Sigma = M.covariances_
