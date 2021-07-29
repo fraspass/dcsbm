@@ -84,7 +84,7 @@ for d in range(1,31):
                 raise ValueError('Error')
         else:
             print('\rd: '+str(d)+'\tK: '+str(K), end='')
-            z = M.fit_predict(X,d=d,transformation=mod_type,verbose=True,random_init=False,max_iter=max_iter,tolerance=tolerance)
+            z = M.fit_predict(X,d=d,transformation=mod_type,verbose=False,random_init=False,max_iter=max_iter,tolerance=tolerance)
         ## Update the value of the BIC
         bic[d-1,K-2] = M.BIC()
         ari[d-1,K-2] = ARI(true_labs,z)
