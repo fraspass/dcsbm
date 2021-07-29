@@ -90,5 +90,5 @@ for d in range(1,31):
         ari[d-1,K-2] = ARI(true_labs,z)
 
 ## Save files
-np.savetxt('bic_'+graph+'_'+mod+'_'+str(m)+'.csv', bic, delimiter=',', fmt='%.4f')
-np.savetxt('ari_'+graph+'_'+mod+'_'+str(m)+'.csv', ari, delimiter=',', fmt='%.5f')
+np.savetxt('ICL/bic_'+graph+'_'+mod+'_'+str(m)+'.csv', bic, delimiter=',', fmt='%.4f')
+np.savetxt('ICL/ari_'+graph+'_'+mod+'_'+str(m)+'.csv', ari, delimiter=',', fmt='%.5f')
