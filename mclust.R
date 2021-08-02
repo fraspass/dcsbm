@@ -3,6 +3,9 @@
 
 require(mclust)
 mclust_fit = function(X){
-  M = Mclust(X, modelNames='VVV')
+  if(dim(X)[2] == 1){
+    X = as.vector(X)
+  }
+  M = Mclust(X)
   return(M$classification-1)
 }

@@ -216,7 +216,7 @@ class EGMM:
         self.M_step(X=self.X, X_red=self.X_red, mean_red=0 if self.transformation != 'theta' else np.pi)
 
     ## Fit using the approximate MLE and predict the values
-    def fit_predict_approximate(self, X, d, transformation=None):
+    def fit_predict_approximate(self, X, d, transformation=None, use_redundant=False):
         ## Calculate the approximate MLE
         self.fit_approximate(X=X, d=d, transformation=transformation)
-        return self.predict(X=self.X, X_red=self.X_red)
+        return self.predict(X=self.X, X_red=self.X_red if use_redundant else None)
