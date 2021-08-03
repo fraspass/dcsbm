@@ -2,7 +2,7 @@
 import numpy as np
 from sklearn.mixture import GaussianMixture as GMM
 
-## Call mclust in R for fitting the model
+## Calculate BIC from sklearn, using a full GMM model
 def GMM_bic(X, K_star, n_init=5):
     bics = []
     for k in range(2,K_star+1):
