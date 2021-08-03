@@ -1,9 +1,6 @@
 #! /usr/bin/env python3
 import numpy as np
 import argparse
-from collections import Counter
-from scipy.sparse import coo_matrix
-from scipy.sparse.linalg import svds
 from sklearn.metrics import adjusted_rand_score as ARI
 import dcsbm
 
