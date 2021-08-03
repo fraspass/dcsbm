@@ -10,6 +10,7 @@ The main tool for inference on DCSBMs is the class `EGMM` contained in the file 
 *  `transformation`: a string, chosen between `normalised`, `theta`, and `score`, representing the required transformation of the embedding (row-normalisation, spherical coordintes or SCORE - if no value is provided for `transformation`, the default is `None`, corresponding clustering on the standard adjacency spectral embedding);
 * `random_init`: a `True/False` boolean value used for initialisation (if `True`, the function `initialise_random` is used, otherwise `initialise_kmeans`);
 * `verbose` (boolean), `max_iter` (integer), `tolerance` (float): other parameters for the EM algorithm. 
+
 For example, the following snippet initialises the model with `K` communities and estimates the clusters using the spherical coordinates transformation (`theta`) with assumed dimension `d` of the latent positions: 
 ```python
 M = dcsbm.EGMM(K=K)
