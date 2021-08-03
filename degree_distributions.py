@@ -56,16 +56,17 @@ labs = np.array([d[x] for x in covs])
 A = coo_matrix((np.repeat(1.0,len(rows)),(rows,cols)),shape=(k_college,k_server))
 dd = np.array(A.sum(axis=1))[:,0]
 
+## Plot degree distribution for ICL2
 fig, ax = plt.subplots(figsize=(4.25,3.25))
-cdict = ['#1E88E5','#FFC107','#D81B60','#004D40']
-mms = ['o', 'v', 'd', 's']
-lss = [':','-.','-','--']
-group = ['Mathematics','Medicine','Chemistry','Civil Engineering']
-for g in [2,3,0,1]:
+cdict = ['#D81B60','#004D40','#1E88E5','#FFC107']
+mms = ['d', 's', 'o', 'v']
+lss = ['-','--', ':', '-.']
+group = ['Chemistry','Civil Engineering','Mathematics','Medicine',]
+for g in range(4):
     ix = np.where(labs == g)
     ax.hist(dd[labs == g], bins=10, color = cdict[g], alpha=0.25)
 
-for g in [2,3,0,1]:
+for g in range(4):
     ix = np.where(labs == g)  
     ax.hist(dd[labs == g], bins=10, histtype=u'step', linestyle = lss[g], edgecolor=cdict[g], linewidth=2, label = group[g])
 
@@ -75,6 +76,7 @@ plt.ylabel('Frequency')
 plt.savefig("out_icl.pdf",bbox_inches='tight')
 plt.show()
 
+## Simulate stochastic blockmodel
 np.random.seed(117)
 n = 1000
 K = 4
@@ -86,8 +88,8 @@ for i in range(n-1):
         A[i,j] = np.random.choice(2,size=1,p=[1-B[z[i],z[j]],B[z[i],z[j]]])
         A[j,i] = A[i,j]
 
+## Plot degree distribution of SBM
 dd = np.array(A.sum(axis=1))
-
 fig, ax = plt.subplots(figsize=(4.25,3.25))
 cdict = ['#1E88E5','#FFC107','#D81B60','#004D40']
 mms = ['o', 'v', 'd', 's']
@@ -105,6 +107,7 @@ plt.ylabel('Frequency')
 plt.savefig("out_sbm.pdf",bbox_inches='tight')
 plt.show()
 
+## Simulate degree corrected stochastic blockmodel
 np.random.seed(117)
 rho = np.random.beta(size=n,a=2,b=4)
 for i in range(n-1):
@@ -112,8 +115,8 @@ for i in range(n-1):
         A[i,j] = np.random.choice(2,size=1,p=[1-rho[i]*rho[j]*B[z[i],z[j]],rho[i]*rho[j]*B[z[i],z[j]]])
         A[j,i] = A[i,j]
 
+## Plot degree distribution of DCSBM
 dd = np.array(A.sum(axis=1))
-
 fig, ax = plt.subplots(figsize=(4.25,3.25))
 cdict = ['#1E88E5','#FFC107','#D81B60','#004D40']
 mms = ['o', 'v', 'd', 's']
