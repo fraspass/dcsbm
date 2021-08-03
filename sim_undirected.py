@@ -46,7 +46,7 @@ for k in range(K):
     z[q[k]:] = k
 
 ## Randomly shuffle
-np.random.seed(111)
+np.random.seed(171171)
 np.random.shuffle(z)
 
 ## BICs and ARIs
@@ -71,14 +71,13 @@ Bs = np.zeros((M_sim,K,K))
 
 ## Set seed
 np.random.seed(args.s)
-
 ## Repeat M_sim times
 for s in range(M_sim):
     B = np.tril(np.random.beta(a=1,b=1,size=(K,K)))
     B += np.tril(B,k=-1).T
     Bs[s] = B
 
-## Set seed
+## Set seed (again)
 np.random.seed(args.s)
 
 ## Repeat M_sim times

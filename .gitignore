@@ -4,3 +4,5 @@ Results/
 INPUT.md
 sim_reconstruction.py
 Data/*
+simulation_undirected.py
+simulation_bipartite.py
