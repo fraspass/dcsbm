@@ -19,11 +19,14 @@ z = M.fit_predict(X, d=d, transformation='theta', verbose=False, random_init=Fal
 
 ## Reproducing the results in the paper
 
-The figures in the paper could be reproduced using the following files:
-- Figure 1: `sim_pictures_intro.py`;
-- Figure 3: `sim_pictures.py`;
-- Figures 4 and 5: `sim.py`;
-- Figure 6: `harry_potter.py`;
-- Figure 7 and 8: `drosophila.py`.
+The results, tables and figures in the paper could be reproduced using the following files:
+* *Section 1 - Introduction* 
+    - Figure 1: `degree_distribution.py`;
+* *Section 2.3 - Asymptotic properties of spectral embedding of DCSBMs*
+    - Figure 2(a): `dcsbm_sim.R`;
+    - Figure 2(b): `sim_dcsbm.py`;
+* *Section 6.1 - Synthetic networks*
+    - Table 1(a), Figures 5(a), 5(b), 6(a) and 6(b): `sim_undirected.py`, using the calls specified in `simulation_undirected_calls.sh`; 
+    - Table 1(b), Figures 5(c) and 6(c): `sim_bipartite.py`, using the calls specified in `simulation_bipartite_calls.sh`.
 
 For security reasons, the ICL network data have *not* been made available, but the code to run the model is available in `icl.py`. Alternative community detection methods are also implemented in `icl_louvain.py`. Also, `degree_distribution.py` reproduces the ICL2 degree distribution in Figure 1c.
