@@ -15,11 +15,16 @@ parser.add_argument("-t","--tol", type=float, dest="tolerance", default=1e-5, co
 parser.add_argument("-i","--maxiter", type=int, dest="max_iter", default=150, const=True, nargs="?",\
 	help="Integer: maximum number of iterations for the variational inference algorithm")
 ## Model type
-parser.add_argument("-m", "--model", dest="model", default = 2, type=int,
+parser.add_argument("-M", "--model", dest="model", default = 2, type=int,
 	help="Model: 0 for standard, 1 for normalised, 2 for spherical.")
-## Initial dimension of the embedding
-parser.add_argument("-d", "--dimension", dest="dimension", default=50, type=int,
+## Maximum dimension for the embedding
+parser.add_argument("-m", "--dimension", dest="dimension", default=50, type=int,
 	help="Initial dimension of the embedding.")
+## Maximum values in the grid search
+parser.add_argument("-d", dest="d", default=20, type=int,
+	help="Maximum value of d in the grid search.")
+parser.add_argument("-K", dest="K", default=20, type=int,
+	help="Maximum value of K in the grid search.")
 ## Graph type
 parser.add_argument("-g", "--graph", dest="graph", default = 'icl2', type=str,
 	help="Type of graph: icl1, icl2 or icl3.")
@@ -34,6 +39,8 @@ max_iter = args.max_iter
 model = args.model
 graph = args.graph
 m = args.dimension
+d_max = args.d
+K_max = args.K
 
 ## Import data
 if graph == 'icl1':
@@ -66,8 +73,6 @@ else:
     mod_type = None
 
 ## BIC and ARI
-d_max = 2
-K_max = 3
 bic = np.zeros((d_max,K_max-1))
 ari = np.zeros((d_max,K_max-1))
 for d in range(1,d_max+1):
