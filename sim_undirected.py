@@ -16,6 +16,10 @@ parser.add_argument("-s", type=int, dest="s", default=171171, const=True, nargs=
 ## Parse arguments
 args = parser.parse_args()
 
+#############################################################
+## Reproduces results in Section 6.1 for undirected DCSBMs ##
+#############################################################
+
 ## Arguments
 K = args.K
 M_sim = args.M
@@ -52,6 +56,11 @@ np.random.shuffle(z)
 ## BICs and ARIs
 bics = {}
 aris = {}
+for t in [None, 'normalised', 'theta']:
+    for s in range(M_sim):
+        for n in ns:
+            bics[t,s,n] = np.zeros((5,5))
+            aris[t,s,n] = np.zeros((5,5))
 
 ## Results
 est_d = {}
@@ -60,11 +69,6 @@ est_ari = {}
 embs = {}
 z_est = {}
 z_est_temp = {}
-for t in [None, 'normalised', 'theta']:
-    for s in range(M_sim):
-        for n in ns:
-            bics[t,s,n] = np.zeros((5,5))
-            aris[t,s,n] = np.zeros((5,5))
 
 ## Matrix of probabilities
 Bs = np.zeros((M_sim,K,K))
@@ -92,7 +96,7 @@ for s in range(M_sim):
             A[j,i] = A[i,j]
     for n in ns: 
         Lambda, Gamma = np.linalg.eigh(A[:n,:n])
-        k = np.argsort(np.abs(Lambda))[::-1][:10]
+        k = np.argsort(np.abs(Lambda))[::-1][:m]
         X = np.dot(Gamma[:,k],np.diag(np.sqrt(np.abs(Lambda[k]))))
         ## Remove empty rows
         zero_index = np.array(A[:n,:n].sum(axis=0),dtype=int)
@@ -118,6 +122,7 @@ for s in range(M_sim):
                     z_est_temp[t,d-1,k-2] = M.fit_predict_approximate(X,d=d,transformation=t)
                     bics[t,s,n][d-1,k-2] = M.BIC()
                     aris[t,s,n][d-1,k-2] = ari(z_est_temp[t,d-1,k-2],zz)
+        ## Obtain estimates
         for t in [None, 'normalised', 'theta']:
             dK = find_max(bics[t,s,n])
             est_d[t,s,n] = dK[0]
