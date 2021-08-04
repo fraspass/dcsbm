@@ -1,4 +1,4 @@
-./sim_undirected.py -K 2 -s 117 & 
+./sim_undirected.py -K 2 -s 171 & 
 ./sim_undirected.py -K 2 -s 222 & 
 ./sim_undirected.py -K 2 -s 333 & 
 ./sim_undirected.py -K 2 -s 444 & 
