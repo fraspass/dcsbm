@@ -28,7 +28,11 @@ The results, tables and figures in the paper could be reproduced using the follo
 * *Section 5.1 - Gaussian mixture modelling of DCSBM embeddings*
     - Figure 5: `dcsbm_transformations.R`.
 * *Section 6.1 - Synthetic networks*
-    - Table 1(a), Figures 5(a), 5(b), 6(a) and 6(b): `sim_undirected.py`, using the calls specified in `sim_undirected_calls.sh`; 
-    - Table 1(b), Figures 5(c) and 6(c): `sim_bipartite.py`, using the calls specified in `sim_bipartite_calls.sh`.
+    - Table 1(a), Figures 5(a), 5(b), 6(a) and 6(b): `sim_undirected.py`, using the calls in `sim_undirected_calls.sh`; 
+    - Table 1(b), Figures 5(c) and 6(c): `sim_bipartite.py`, using the calls in `sim_bipartite_calls.sh`.
+* *Section 6.2 - Imperial College network flow data*
+    - Table 3: `icl.py` and `icl_louvain.py`, using the calls in `icl_calls.sh`.
 
-For security reasons, the ICL network data have *not* been made available, but the code to run the model is available in `icl.py`. Alternative community detection methods are also implemented in `icl_louvain.py`. Also, `degree_distribution.py` reproduces the ICL2 degree distribution in Figure 1c.
+Note that, for security reasons, the ICL network data have **_not_** been made available, but the code to run the model on such networks is available.
+
+## Additional scripts 
