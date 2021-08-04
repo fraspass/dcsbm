@@ -1,4 +1,4 @@
-#' @title   Reproduces data for Figure 2a
+#' @title   Reproduces data for Figure 5
 #' @author  Francesco Sanna Passino
 
 ## Simulation DCSBM
