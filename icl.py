@@ -75,6 +75,7 @@ else:
 ## BIC and ARI
 bic = np.zeros((d_max,K_max-1))
 ari = np.zeros((d_max,K_max-1))
+np.random.seed(117)
 for d in range(1,d_max+1):
     for K in range(2,K_max+1):
         ## Initialise the model
