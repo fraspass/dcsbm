@@ -38,13 +38,13 @@ m = args.dimension
 ## Import data
 if graph == 'icl1':
     true_labs = np.loadtxt('Data/labs1.csv', delimiter=',')
-    X = np.load('Data/X_ICL1.npy')
+    X = np.load('Data/X_ICL1.npy')[:,:m]
 elif graph == 'icl2':
     true_labs = np.loadtxt('Data/labs2.csv', delimiter=',')
-    X = np.load('Data/X_ICL2.npy')
+    X = np.load('Data/X_ICL2.npy')[:,:m]
 elif graph == 'icl3':
     true_labs = np.loadtxt('Data/labs3.csv', delimiter=',')
-    X = np.load('Data/X_ICL3.npy')
+    X = np.load('Data/X_ICL3.npy')[:,:m]
 else:
     raise ValueError('Invalid graph.')
 
@@ -66,10 +66,12 @@ else:
     mod_type = None
 
 ## BIC and ARI
-bic = np.zeros((30,19))
-ari = np.zeros((30,19))
-for d in range(1,31):
-    for K in range(2,21):
+d_max = 2
+K_max = 3
+bic = np.zeros((d_max,K_max-1))
+ari = np.zeros((d_max,K_max-1))
+for d in range(1,d_max+1):
+    for K in range(2,K_max+1):
         ## Initialise the model
         M = dcsbm.EGMM(K=K)
         if args.approx:
@@ -81,11 +83,11 @@ for d in range(1,31):
                 raise ValueError('Error')
         else:
             print('\rd: '+str(d)+'\tK: '+str(K), end='')
-            z = M.fit_predict(X,d=d,transformation=mod_type,verbose=False,random_init=False,max_iter=max_iter,tolerance=tolerance)
+            z = M.fit_predict(X,d=d,transformation=mod_type,verbose=True,random_init=False,max_iter=max_iter,tolerance=tolerance)
         ## Update the value of the BIC
         bic[d-1,K-2] = M.BIC()
         ari[d-1,K-2] = ARI(true_labs,z)
 
 ## Save files
-np.savetxt('ICL/bic_'+graph+'_'+mod+'_'+str(m)+'.csv', bic, delimiter=',', fmt='%.4f')
-np.savetxt('ICL/ari_'+graph+'_'+mod+'_'+str(m)+'.csv', ari, delimiter=',', fmt='%.5f')
+np.save('ICL/bic_' + graph + '_' + mod + '_'+str(m)+'.npy', bic)
+np.save('ICL/ari_' + graph + '_' + mod + '_'+str(m)+'.npy', ari)
