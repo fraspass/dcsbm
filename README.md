@@ -26,13 +26,27 @@ The results, tables and figures in the paper could be reproduced using the follo
     - Figure 2(a): `dcsbm_example.R`;
     - Figure 2(b): `dcsbm_clt_simulation.py`.
 * *Section 5.1 - Gaussian mixture modelling of DCSBM embeddings*
-    - Figure 5: `dcsbm_transformations.R`.
+    - Figure 3: `dcsbm_transformations.R`.
+* *Section 5.2 - Structure of the likelihood*
+    - Figure 4: `validation_undirected.py` (the script also gives results for reproducing Figure 8 in *Appendix B.1 - Asymptotic behaviour*).
+* *Section 5.3 - Normality of the spherical coordinates*
+    - $p$-values of the paired sign tests: `validation_mardia.py`.
 * *Section 6.1 - Synthetic networks*
     - Table 1(a), Figures 5(a), 5(b), 6(a) and 6(b): `sim_undirected.py`, using the calls in `sim_undirected_calls.sh`; 
     - Table 1(b), Figures 5(c) and 6(c): `sim_bipartite.py`, using the calls in `sim_bipartite_calls.sh`.
 * *Section 6.2 - Imperial College network flow data*
     - Table 3: `icl.py` and `icl_louvain.py`, using the calls in `icl_calls.sh`.
+* *Appendix B.2 - Changes in the correlation between blocks* 
+    - Figure 9: `validation_correlation.py`.
 
 Note that, for security reasons, the ICL network data have **_not_** been made available, but the code to run the model on such networks is available.
 
+The figures in the paper are all produced with the `LaTeX` package `pgfplots`, using the results obtained running the scripts listed above. Hence, the figures obtained from the `R` and `python` scripts listed above are not identical to those in the paper.  
+
 ## Additional scripts 
+
+Additional scripts are published in the repository:
+* `bic_fit.py`, which is useful to fit a GMM on a dataset, choosing the number of clusters using BIC;
+* `mclust.py`, which is useful to run the `R` package `mclust` in `python` (using the function in `mclust.R`);
+* `zhu.py`, which can be used to calculate the elbows of the scree plot using the criterion of Zhu and Ghodsi. 
+
