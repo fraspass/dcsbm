@@ -103,12 +103,12 @@ for s in range(M_sim):
     B = Bs[s]
     ## Degree corrections
     rho = np.random.beta(a=2,b=1,size=n_max)
-    rho_prime = np.random.beta(a=2,b=1,size=n_prime_max)
+    rho_prime = np.random.beta(a=2,b=1,size=n_max_prime)
     ## Construct the adjacency matrix
     rows = []
     cols = []
     for i in range(n_max):
-        for j in range(n_prime_max):
+        for j in range(n_max_prime):
             if np.random.binomial(n=1,p=rho[i]*rho_prime[j]*B[z[i],z_prime[j]],size=1) == 1:
                 rows += [i]
                 cols += [j]
