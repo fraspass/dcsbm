@@ -147,6 +147,6 @@ for t in [None, 'normalised', 'theta']:
 ## Save output
 for t in [None, 'normalised', 'theta']:
     label = t if t != None else 'none'
-    np.savetxt('Results/out_d_' + label + '_' + str(K) + '_' + str(n) + '_' + str(args.s) + '.csv', d_scores[t], fmt='%i', delimiter=',')
-    np.savetxt('Results/out_K_' + label + '_' + str(K) + '_' + str(n) + '_' + str(args.s) + '.csv', K_scores[t], fmt='%i', delimiter=',')
-    np.savetxt('Results/est_ari_' + label + '_' + str(K) + '_' + str(n) + '_' + str(args.s) + '.csv', ari_scores[t], fmt='%.6f', delimiter=',')
+    np.savetxt('Results/out_d_' + label + '_' + str(K) + '_' + str(args.s) + '.csv', d_scores[t], fmt='%i', delimiter=',')
+    np.savetxt('Results/out_K_' + label + '_' + str(K) + '_' + str(args.s) + '.csv', K_scores[t], fmt='%i', delimiter=',')
+    np.savetxt('Results/est_ari_' + label + '_' + str(K) + '_' + str(args.s) + '.csv', ari_scores[t], fmt='%.6f', delimiter=',')
