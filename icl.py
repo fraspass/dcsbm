@@ -45,13 +45,13 @@ K_max = args.K
 ## Import data
 if graph == 'icl1':
     true_labs = np.loadtxt('Data/labs1.csv', delimiter=',')
-    X = np.load('Data/X_ICL1.npy')[:,:m]
+    X = np.load('Data/X_icl1_emb.npy')[:,:m]
 elif graph == 'icl2':
     true_labs = np.loadtxt('Data/labs2.csv', delimiter=',')
-    X = np.load('Data/X_ICL2.npy')[:,:m]
+    X = np.load('Data/X_icl2_emb.npy')[:,:m]
 elif graph == 'icl3':
     true_labs = np.loadtxt('Data/labs3.csv', delimiter=',')
-    X = np.load('Data/X_ICL3.npy')[:,:m]
+    X = np.load('Data/X_icl3_emb.npy')[:,:m]
 else:
     raise ValueError('Invalid graph.')
 
@@ -83,16 +83,26 @@ for d in range(1,d_max+1):
         if args.approx:
             try:
                 print('\rd: '+str(d)+'\tK: '+str(K), end='')
-                z = M.fit_predict_approximate(X,d=d,transformation=mod_type)
+                z = M.fit_predict_approximate(X,d=d,transformation=mod_type, n_init=5)
             except:
                 print(str(d), str(K))
                 raise ValueError('Error')
         else:
             print('\rd: '+str(d)+'\tK: '+str(K), end='')
-            z = M.fit_predict(X,d=d,transformation=mod_type,verbose=False,random_init=False,max_iter=max_iter,tolerance=tolerance)
+            z = M.fit_predict(X,d=d,transformation=mod_type,verbose=False,random_init=False,max_iter=max_iter,tolerance=tolerance)  
         ## Update the value of the BIC
         bic[d-1,K-2] = M.BIC()
         ari[d-1,K-2] = ARI(true_labs,z)
+
+if args.approx:
+    d_est = np.argmax(np.max(bic,axis=1)) + 1
+    import bic_fit
+    if mod_type == 'theta':
+        z_est, K_est = bic_fit.GMM_bic(Theta[:,:d_est], 10)
+    elif mod_type == 'normalised':
+        z_est, K_est = bic_fit.GMM_bic(X_tilde[:,:d_est], 10)
+    else:
+        z_est, K_est = bic_fit.GMM_bic(X[:,:d_est], 10)
 
 ## Save files
 np.save('ICL/bic_' + graph + '_' + mod + '_'+str(m)+'.npy', bic)

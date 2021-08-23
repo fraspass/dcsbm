@@ -4,7 +4,6 @@ import argparse
 from collections import Counter
 from scipy.sparse import coo_matrix
 from scipy.sparse.linalg import eigsh
-from sklearn.metrics import silhouette_score as ASW
 from scipy.stats import kstest as KS
 from sklearn.preprocessing import scale
 from scipy.stats import chi2, norm
