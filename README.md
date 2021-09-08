@@ -30,7 +30,7 @@ The results, tables and figures in the paper could be reproduced using the follo
 * *Section 5.2 - Structure of the likelihood*
     - Figure 4: `validation_undirected.py` (the script also gives results for reproducing Figure 8 in *Appendix B.1 - Asymptotic behaviour*).
 * *Section 5.3 - Normality of the spherical coordinates*
-    - $p$-values of the paired sign tests: `validation_mardia.py`.
+    - $p$ -values of the paired sign tests: `validation_mardia.py`.
 * *Section 6.1 - Synthetic networks*
     - Table 1(a), Figures 5(a), 5(b), 6(a) and 6(b): `sim_undirected.py`, using the calls in `sim_undirected_calls.sh`; 
     - Table 1(b), Figures 5(c) and 6(c): `sim_bipartite.py`, using the calls in `sim_bipartite_calls.sh`.
