@@ -1,6 +1,6 @@
 # Spectral clustering on spherical coordinates under the degree-corrected stochastic blockmodel
 
-The code in this repository can be used to reproduce the results and simulations in *Sanna Passino, F., Heard, N. A., and Rubin-Delanchy, P. (2020+) "Spectral clustering on spherical coordinates under the degree-corrected stochastic blockmodel"* ([link to the arXiv publication](https://arxiv.org/abs/2011.04558)). 
+The code in this repository can be used to reproduce the results and simulations in *Sanna Passino, F., Heard, N. A., and Rubin-Delanchy, P. (2021) "Spectral clustering on spherical coordinates under the degree-corrected stochastic blockmodel"*, *Technometrics* (to appear, [link to the arXiv publication](https://arxiv.org/abs/2011.04558)). 
 
 ## Understanding the code
 
@@ -36,7 +36,7 @@ The results, tables and figures in the paper could be reproduced using the follo
     - Table 1(b), Figures 5(c) and 6(c): `sim_bipartite.py`, using the calls in `sim_bipartite_calls.sh`.
 * *Section 6.2 - Imperial College network flow data*
     - Table 3: `icl.py` and `icl_louvain.py`, using the calls in `icl_calls.sh`;
-    - Mardia tests: ``icl_mardia.py`.
+    - Mardia tests: `icl_mardia.py`.
 * *Appendix B.2 - Changes in the correlation between blocks* 
     - Figure 9: `validation_correlation.py`.
 
